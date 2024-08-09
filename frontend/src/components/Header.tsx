@@ -36,7 +36,6 @@ const Header: React.FC = () => {
   };
 
   const handleProfile = () => {
-    // Navigate to the user profile page or show profile details
     navigate("/profile");
     handleMenuClose();
   };

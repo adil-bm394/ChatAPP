@@ -95,7 +95,7 @@ const RegisterPage: React.FC = () => {
             </Button>
           </form>
           <Typography variant="body2" sx={{ marginTop: 1 }}>
-            Already registered? <Link to="/login">Click here</Link>
+            Already registered? <Link to="/">Click here</Link>
           </Typography>
           {registrationError && (
             <Typography color="error" sx={{ marginTop: 1 }}>

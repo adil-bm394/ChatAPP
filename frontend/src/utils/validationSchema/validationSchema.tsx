@@ -21,3 +21,13 @@ const registerSchema = yup.object().shape({
 });
 
 export default registerSchema;
+
+
+export const validationSchemaForProfile = yup.object({
+ 
+   name: yup.string().required("Username is required"),
+  email: yup
+    .string()
+    .email("Enter a valid email")
+    .required("Email is required"),
+});

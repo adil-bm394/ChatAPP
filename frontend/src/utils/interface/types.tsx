@@ -17,3 +17,7 @@ export interface LoginFormInputs {
   email: string;
   password: string;
 }
+export interface ProfileFormData {
+  name: string;
+  email: string;
+}
