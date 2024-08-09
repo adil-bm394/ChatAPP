@@ -16,15 +16,9 @@ import { validationSchemaForProfile } from "../utils/validationSchema/validation
 const Profile: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { id } = useParams<{ id?: string }>();
  const userDetails = useSelector((state: RootState) => state.user.userDetails);
 
 
-  useEffect(() => {
-    if (!userDetails) {
-      navigate("/chat");
-    }
-  }, [userDetails, navigate]);
   const {
     control,
     handleSubmit,
@@ -35,19 +29,12 @@ const Profile: React.FC = () => {
       name: userDetails?.name || "",
       email: userDetails?.email || "",
     },
-    resolver: yupResolver(validationSchemaForProfile),
+    
   });
-
-  useEffect(() => {
-    if (userDetails) {
-      setValue("name", userDetails?.name);
-      setValue("email", userDetails?.email);
-    }
-  }, [userDetails, setValue]);
 
   const onSubmit = async (data: ProfileFormData) => {
       navigate("/chat");
-      toast.success("you back to chat Page")
+      toast.success("You back to chat Page")
      
   };
 
