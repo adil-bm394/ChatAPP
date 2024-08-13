@@ -85,8 +85,9 @@ const Chat: React.FC = () => {
           display: "flex",
           flexDirection: "row",
           flex: "1 1 auto",
-          borderBottom: `1px solid ${theme.palette.divider}`,
-          margin: "6px 0px 0px 0px",
+         // borderBottom: `1px solid ${theme.palette.divider}`,
+          paddingTop: 1,
+          marginLeft: -3,
         }}
       >
         <Box
@@ -99,6 +100,7 @@ const Chat: React.FC = () => {
             justifyContent: "center",
             padding: 2,
             borderRight: `1px solid ${theme.palette.divider}`,
+            marginBottom:2
           }}
         >
           <Typography variant="h6" sx={{ mb: 1 }}>
@@ -108,7 +110,7 @@ const Chat: React.FC = () => {
           <Button
             variant="outlined"
             color="inherit"
-            sx={{ mt: 2 }}
+            sx={{ mt: 52 }}
             onClick={leaveRoom}
           >
             Leave Room
@@ -120,6 +122,7 @@ const Chat: React.FC = () => {
             display: "flex",
             flexDirection: "column",
             padding: 2,
+            marginLeft: "0px",
           }}
         >
           <Box
@@ -128,10 +131,11 @@ const Chat: React.FC = () => {
               overflowY: "auto",
               mb: 2,
               padding: 1,
-              backgroundColor: theme.palette.background.paper,
+              backgroundColor: "white",
               borderRadius: 1,
               border: `1px solid ${theme.palette.divider}`,
               maxHeight: "calc(100vh - 150px)",
+              width: "103%",
             }}
           >
             <List>
@@ -159,6 +163,7 @@ const Chat: React.FC = () => {
               borderTop: `1px solid ${theme.palette.divider}`,
               paddingTop: 1,
               paddingBottom: 1,
+              width: "105%",
             }}
           >
             <TextField
@@ -172,14 +177,19 @@ const Chat: React.FC = () => {
                   sendMessage();
                 }
               }}
-              sx={{ borderRadius: 1 }}
+              sx={{ borderRadius: 1, width: "110%" }}
               autoComplete="off"
             />
             <Button
               variant="contained"
               color="primary"
               onClick={sendMessage}
-              sx={{ padding: 2 }}
+              sx={{
+                padding: 2,
+                width: "50%",
+                alignSelf: "flex-end",
+                marginLeft: "40",
+              }}
             >
               Send
             </Button>
