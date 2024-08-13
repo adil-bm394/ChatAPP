@@ -26,7 +26,7 @@ const Chat: React.FC = () => {
   const theme = useTheme();
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
-   const { purpose, room } = useParams<{ purpose: string; room: string }>();
+  const { purpose, room } = useParams<{ purpose: string; room: string }>();
   const userDetails = useSelector((state: RootState) => state.user.userDetails);
   const username = userDetails?.name;
 
@@ -104,7 +104,7 @@ const Chat: React.FC = () => {
           <Typography variant="h6" sx={{ mb: 1 }}>
             Room: {room}
           </Typography>
-          <Typography variant="subtitle1">Username: {username}</Typography>
+          <Typography variant="subtitle1">User: {username}</Typography>
           <Button
             variant="outlined"
             color="inherit"
@@ -139,7 +139,7 @@ const Chat: React.FC = () => {
                 <ListItem
                   key={index}
                   sx={{
-                    borderBottom: `1px solid ${theme.palette.divider}`,
+                    // borderBottom: `1px solid ${theme.palette.divider}`,
                     paddingY: 1,
                     textDecoration: "none",
                   }}
@@ -173,12 +173,13 @@ const Chat: React.FC = () => {
                 }
               }}
               sx={{ borderRadius: 1 }}
+              autoComplete="off"
             />
             <Button
               variant="contained"
               color="primary"
               onClick={sendMessage}
-              sx={{ padding: 1 }}
+              sx={{ padding: 2 }}
             >
               Send
             </Button>
