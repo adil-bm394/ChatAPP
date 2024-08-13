@@ -29,7 +29,7 @@ const Join: React.FC = () => {
 
   const joinChat = () => {
     if (purpose && room) {
-      navigate(`/chat?purpose=${purpose}&room=${room}`);
+      navigate(`/chat/${purpose}/${room}`);
       toast.success(`Welcome to ${room} Room`);
     } else {
       toast.error("Please select both purpose and room.");

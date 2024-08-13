@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import io from "socket.io-client";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import {
@@ -24,17 +24,11 @@ const Chat: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const theme = useTheme();
+  const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
-
- const queryParams = new URLSearchParams(location.search);
- const purpose = queryParams.get("purpose") || "";
- const room = queryParams.get("room") || "";
-const userDetails = useSelector((state: RootState) => state.user.userDetails);
-const username=userDetails?.name;
- 
-
- console.log("room",room,"purpose",purpose);
-
+   const { purpose, room } = useParams<{ purpose: string; room: string }>();
+  const userDetails = useSelector((state: RootState) => state.user.userDetails);
+  const username = userDetails?.name;
 
   useEffect(() => {
     if (username && room) {
@@ -56,6 +50,12 @@ const username=userDetails?.name;
     };
   }, [username, room]);
 
+  useEffect(() => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [messages]);
+
   const sendMessage = () => {
     if (message.trim()) {
       socket.emit("sendMessage", { message, username, room });
@@ -66,7 +66,7 @@ const username=userDetails?.name;
   const leaveRoom = () => {
     socket.emit("leaveRoom", { purpose, room });
     navigate("/join");
-    toast.success("You leave the room");
+    toast.success("You left the room");
   };
 
   return (
@@ -86,7 +86,7 @@ const username=userDetails?.name;
           flexDirection: "row",
           flex: "1 1 auto",
           borderBottom: `1px solid ${theme.palette.divider}`,
-          margin:"6px 0px 0px 0px"
+          margin: "6px 0px 0px 0px",
         }}
       >
         <Box
@@ -141,11 +141,13 @@ const username=userDetails?.name;
                   sx={{
                     borderBottom: `1px solid ${theme.palette.divider}`,
                     paddingY: 1,
+                    textDecoration: "none",
                   }}
                 >
                   {msg}
                 </ListItem>
               ))}
+              <div ref={messagesEndRef} />
             </List>
           </Box>
 
